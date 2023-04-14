@@ -1,9 +1,16 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Home } from './components/Home';
 
 function App() {
   return (
     <div className="App pt-[4vh]">
-      <h2 className="text-4xl font-bold mb-4">Guftagu</h2>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }
