@@ -1,4 +1,4 @@
-## TaGuftagu
+## Guftagu
 
 Real-time chat app built with React, Redux Toolkit, Socket.IO, and GraphQL. Stores messages in database using GraphQL. The app allows users to send and receive messages in real-time.
 
