@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { FormInput, GoogleButton, TopTitle } from "../../Shared";
+import { FormInput, GoogleButton, TopTitle, compClasses } from "../../Shared";
 import { auth, registerWithEmailAndPassword } from "../../../config/firebase";
 
 const LoginButton = () =>{
   return(
     <div className="text-sm mt-3">
-      Already have an account? <Link to="/login">Login</Link> now.
+      Already have an account? <Link to="/login" className="text-blue-500 hover:text-blue-700">Login</Link> now.
     </div>
   )
 }
@@ -43,7 +43,7 @@ const Register = () => {
 
   return (
     <div className="flex h-screen items-center text-center">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-md px-8 pt-6 pb-8 mb-4">
+      <div className={compClasses.loginCard}>
         <TopTitle title="Please Register Account"/>
         <FormInput type="text" value={name} setFunction={setName} placeholder="Full Name" label="Name"/>
         <FormInput type="email" value={email} setFunction={setEmail} placeholder="name@example.com" label="Email Address"/>
