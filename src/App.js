@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './styles/app.css'
 import './styles/tailwind.css'
+import './App.css'
 import { Home } from './components/Home';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
