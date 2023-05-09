@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@hookform/resolvers": "^3.0.1",
@@ -13,6 +18,7 @@
     "autoprefixer": "^10.4.14",
     "dotenv": "^16.0.3",
     "firebase": "^9.19.1",
+    "font-awesome": "^4.7.0",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "react": "^18.2.0",
@@ -53,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "sass": "^1.62.1",
     "tailwindcss": "^3.3.1"
   }
 }
