@@ -1,14 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./styles.scss";
-import {
-  faComment,
-  faGear,
-  faSignOut,
-  faUserAlt,
-} from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase";
+import { menuOptions } from "../Shared";
+import "./styles.scss";
 
 const SidebarButton = () => {
   return (
@@ -40,28 +35,6 @@ const SidebarButton = () => {
 const SidebarMenu = () => {
   const navigate = useNavigate();
 
-  const menuOptions = [
-    {
-      heading: "Chats",
-      icon: faComment,
-      action: "/chats"
-    },
-    {
-      heading: "Profile",
-      icon: faUserAlt ,
-      action: "/profile"
-    },
-    {
-      heading: "Settings",
-      icon: faGear,
-      action: "/settings" },
-    {
-      heading: "Logout",
-      icon: faSignOut,
-      action: "/login"
-    },
-  ];
-
   const ChatBadge = () => {
     return <span className="chat-badge px-1 rounded-full">88</span>;
   };
@@ -83,7 +56,6 @@ const SidebarMenu = () => {
   const MenuOption = (props) => {
     return (
       <li>
-        {console.log(props)}
         <NavLink
           className="navbar-brand menu-item space-y-1"
           to={props.action}
@@ -101,7 +73,9 @@ const SidebarMenu = () => {
 
   const FullMenu = () => {
     return menuOptions.map((op) => {
-      return <MenuOption heading={op.heading} icon={op.icon} action={op.action} />;
+      return (
+        <MenuOption heading={op.heading} icon={op.icon} action={op.action} />
+      );
     });
   };
 
@@ -118,58 +92,7 @@ const SidebarMenu = () => {
       </div>
     </aside>
   );
-};
 
-const HomeScreen = () => {
-  return (
-    <div className="p-4 sm:ml-60">
-      <div className="grid grid-cols-3 gap-4 mb-4">
-        <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-        <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-        <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-      </div>
-      <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-        <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-        <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-        <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-        <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-      </div>
-      <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-        <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-        <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-        <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-        <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-        </div>
-      </div>
-    </div>
-  );
 };
 
 export const Navbar = () => {
@@ -177,7 +100,6 @@ export const Navbar = () => {
     <>
       <SidebarButton />
       <SidebarMenu />
-      <HomeScreen />
     </>
   );
 };

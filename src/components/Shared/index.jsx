@@ -1,3 +1,4 @@
+import { faComment, faGear, faSignOut, faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { signInWithGoogle } from "../../config/firebase";
 
 export const TopTitle = ({ title }) => {
@@ -11,10 +12,32 @@ export const buttonHover = (color, type) => {
   );
 }
 
+export const menuOptions = [
+  {
+    heading: "Chats",
+    icon: faComment,
+    action: "/chats"
+  },
+  {
+    heading: "Profile",
+    icon: faUserAlt ,
+    action: "/profile"
+  },
+  {
+    heading: "Settings",
+    icon: faGear,
+    action: "/settings" },
+  {
+    heading: "Logout",
+    icon: faSignOut,
+    action: "/login"
+  },
+];
+
 export const compClasses = {
   loginCard: "max-w-md mx-auto rounded-lg shadow-md p-8 mb-4 w-[25vw]",
   loginButton: `w-full py-2 mt-4 ${buttonHover('blue', 'bg')} text-white rounded-md v-center`,
-  googleButton:`w-full py-2 mt-4 ${buttonHover('red', 'bg') } text-white rounded-md v-center`,
+  gButton:`w-full py-2 mt-4 ${buttonHover('red', 'bg') } text-white rounded-md v-center`,
   inputBox: `appearance-none border rounded w-full p-2 ${buttonHover('gray', 'text')} leading-tight focus:outline-none focus:shadow-outline`,
 };
 
@@ -22,7 +45,7 @@ export const GoogleButton = ({type}) => {
   return (
     <button
       type="button"
-      className={compClasses.googleButton}
+      className={compClasses.gButton}
       onClick={signInWithGoogle}
     >
       <i className="fab fa-google text-white mr-2"></i>
