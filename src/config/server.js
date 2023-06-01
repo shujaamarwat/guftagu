@@ -5,7 +5,7 @@ const { readFile } = require("fs/promises");
 const { createServer } = require("http");
 const { resolvers } = require("./resolvers.js");
 const { WebSocketServer } = require("ws");
-const { useServer } = require("graphql-ws/lib/use/ws");
+const { useServer: graphqlWSUseServer } = require("graphql-ws/lib/use/ws");
 const { getWSContext, app, getContext } = require("./routes.js");
 
 const PORT = 9000;
@@ -18,7 +18,7 @@ const startServer = async () => {
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-  useServer(
+  graphqlWSUseServer(
     {
       schema,
       context: getWSContext,
