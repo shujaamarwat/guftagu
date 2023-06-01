@@ -1,6 +1,8 @@
 const { mongoose } = require("mongoose");
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../..', '.env') });
 
-mongoose.connect(process.env.REACT_APP_GOOGLEAPIKEY, {
+mongoose.connect(process.env.REACT_APP_MONGOOSEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
