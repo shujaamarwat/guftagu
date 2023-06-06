@@ -23,6 +23,7 @@ function isSubscription({ query }) {
     definition.operation === OperationTypeNode.SUBSCRIPTION
   );
 }
+
 export const client = new ApolloClient({
   link: split(isSubscription, wsLink, httpLink),
   cache: new InMemoryCache(),

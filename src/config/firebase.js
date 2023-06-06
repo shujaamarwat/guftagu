@@ -1,8 +1,24 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import {
+  initializeApp
+} from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail} from "firebase/auth";
-import { getFirestore, query, getDocs, collection, where, addDoc} from "firebase/firestore";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail
+} from "firebase/auth";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -45,7 +61,7 @@ const signInWithGoogle = async () => {
 const logInWithEmailAndPassword = async (email, password) => {
   console.log(email, password)
   try {
-     await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -54,7 +70,13 @@ const logInWithEmailAndPassword = async (email, password) => {
 
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const res = await createUserWithEmailAndPassword(auth, email, password).then(function (result) {
+      return result.user.updateProfile({
+        displayName: name
+      })
+    }).catch(function (error) {
+      console.log(error);
+    });
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
@@ -80,12 +102,15 @@ const sendPasswordReset = async (email) => {
 };
 
 const fetchCollection = async (name, setFunction) => {
-  await getDocs(collection(db, name)).then((querySnapshot)=>{
+  await getDocs(collection(db, name)).then((querySnapshot) => {
     const newData = querySnapshot.docs
-        .map((doc) => ({...doc.data(), id:doc.id }));
+      .map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }));
     setFunction(newData);
-  },
-);}
+  }, );
+}
 
 export {
   auth,
@@ -96,4 +121,3 @@ export {
   sendPasswordReset,
   fetchCollection,
 };
-

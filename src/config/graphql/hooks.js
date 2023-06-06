@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useSubscription } from "@apollo/client";
-import { getAccessToken } from "../auth";
+import { getAccessToken } from "./auth";
 import {
   ADD_MESSAGE_MUTATION,
   MESSAGES_QUERY,

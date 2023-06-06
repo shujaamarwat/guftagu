@@ -18,12 +18,10 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return <p>Loading...</p>;
   }
-
   if (!user) {
     <Alert message={"Please Login First"}/>
     return <Navigate to="/login" replace/>;
   }
-
   return(
     <>
       <Navbar />
