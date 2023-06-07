@@ -9,7 +9,9 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  sendEmailVerification,
+  updateProfile,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -70,25 +72,26 @@ const logInWithEmailAndPassword = async (email, password) => {
 
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password).then(function (result) {
-      return result.user.updateProfile({
-        displayName: name
-      })
-    }).catch(function (error) {
-      console.log(error);
-    });
-    const user = res.user;
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      name,
-      authProvider: "local",
-      email,
-      password
-    });
+    await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
+      console.log(err)
+    );
+    await sendEmailVerification(auth.currentUser).catch((err) =>
+      console.log(err)
+    );
+    await updateProfile(auth.currentUser, { displayName: name }).catch(
+      (err) => console.log(err)
+    );
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    console.log(err);
   }
+  // const user = res.user;
+  // await addDoc(collection(db, "users"), {
+  //   uid: user.uid,
+  //   name,
+  //   authProvider: "local",
+  //   email,
+  //   password
+  // });
 };
 
 const sendPasswordReset = async (email) => {
