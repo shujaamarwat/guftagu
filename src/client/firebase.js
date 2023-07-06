@@ -2,7 +2,7 @@
 import {
   initializeApp
 } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
+
 import {
   GoogleAuthProvider,
   getAuth,
@@ -13,6 +13,7 @@ import {
   sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
+
 import {
   getFirestore,
   query,
@@ -21,6 +22,8 @@ import {
   where,
   addDoc
 } from "firebase/firestore";
+// import { User } from '@client/db';
+const API_URL = 'http://localhost:9000';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -39,6 +42,12 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
+
+export const ACCESS_TOKEN_KEY = 'accessToken';
+
+export function getAccessToken() {
+  return localStorage.getItem(ACCESS_TOKEN_KEY);
+}
 
 const signInWithGoogle = async () => {
   try {
@@ -60,38 +69,75 @@ const signInWithGoogle = async () => {
   }
 };
 
+const setToken = async (userId, password) => {
+  const response = await fetch(`${API_URL}/login`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId,
+      password
+    }),
+  });
+  if (response.ok) {
+    const {
+      token
+    } = await response.json();
+    console.log("tken = ", token)
+    localStorage.setItem(ACCESS_TOKEN_KEY, token);
+    return {
+      id: userId
+    };
+  }
+  return null;
+
+}
 const logInWithEmailAndPassword = async (email, password) => {
-  console.log(email, password)
+  // console.log(email, password)
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    const resultID = setToken(email, password)
+    return {
+      resultID
+    };
   } catch (err) {
     console.error(err);
     alert(err.message);
+    return null;
   }
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
-  try {
-    await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
-      console.log(err)
-    );
-    await sendEmailVerification(auth.currentUser).catch((err) =>
-      console.log(err)
-    );
-    await updateProfile(auth.currentUser, { displayName: name }).catch(
-      (err) => console.log(err)
-    );
-  } catch (err) {
-    console.log(err);
+  const response = await fetch(`${API_URL}/register`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      password
+    }),
+  });
+  if (response.ok) {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
+        console.log(err)
+      );
+      await sendEmailVerification(auth.currentUser).catch((err) =>
+        console.log(err)
+      );
+      await updateProfile(auth.currentUser, {
+        displayName: name
+      }).catch(
+        (err) => console.log(err)
+      );
+      await setToken(email, password);
+    } catch (err) {
+      console.log(err);
+    }
   }
-  // const user = res.user;
-  // await addDoc(collection(db, "users"), {
-  //   uid: user.uid,
-  //   name,
-  //   authProvider: "local",
-  //   email,
-  //   password
-  // });
+  return null;
 };
 
 const sendPasswordReset = async (email) => {
@@ -114,6 +160,7 @@ const fetchCollection = async (name, setFunction) => {
     setFunction(newData);
   }, );
 }
+
 
 export {
   auth,

@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useSubscription } from "@apollo/client";
-import { getAccessToken } from "./auth";
 import {
   ADD_MESSAGE_MUTATION,
   MESSAGES_QUERY,
   MESSAGE_ADDED_SUBSCRIPTION,
 } from "./queries";
+import { getAccessToken } from "../firebase";
 
 export function useAddMessage() {
   const [mutate] = useMutation(ADD_MESSAGE_MUTATION);

@@ -1,5 +1,5 @@
-const { PubSub } = require("graphql-subscriptions");
-const { Message } = require("./db.js");
+import { PubSub } from "graphql-subscriptions";
+import { Message } from "./db.js";
 
 const pubSub = new PubSub();
 
@@ -9,7 +9,7 @@ function rejectIf(condition) {
   }
 }
 
-const resolvers = {
+export const resolvers = {
   Query: {
     messages: async (_root, _args, { userId }) => {
       rejectIf(!userId);
@@ -38,4 +38,3 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers
