@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword } from "../../../config/firebase";
+import { auth, logInWithEmailAndPassword } from "../../../client/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
   Alert,
@@ -52,13 +52,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [user, loading] = useAuthState(auth);
   const [load, setLoading] = useState(false);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) {
-      // console.log('here')
       return;
     }
     if (user) {
@@ -74,7 +73,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     logInWithEmailAndPassword(email, password, rememberMe)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         navigate("/", {
           state: {
             email: email,

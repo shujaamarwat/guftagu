@@ -6,7 +6,7 @@ import './App.css'
 import { Home } from './components/Home';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
-import { auth } from './config/firebase';
+import { auth } from './client/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Alert } from './components/Shared';
 import { Navbar } from './components/Navbar';

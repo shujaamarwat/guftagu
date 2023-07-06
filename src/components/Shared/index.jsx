@@ -1,5 +1,5 @@
 import { faComment, faGear, faSignOut, faUserAlt } from "@fortawesome/free-solid-svg-icons";
-import { signInWithGoogle } from "../../config/firebase";
+import { signInWithGoogle } from "../../client/firebase";
 
 export const TopTitle = ({ title }) => {
   return <h1 className="text-lg font-medium mb-3">{title}</h1>;

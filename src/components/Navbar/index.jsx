@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "../../config/firebase";
+import { ACCESS_TOKEN_KEY, auth } from "../../client/firebase";
 import { menuOptions } from "../Shared";
 import "./styles.scss";
 
@@ -51,6 +51,7 @@ const SidebarMenu = () => {
       .catch(function (error) {
         console.log("Sign Out NOT Successful: ", error);
       });
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
   };
 
   const MenuOption = (props) => {
@@ -74,7 +75,12 @@ const SidebarMenu = () => {
   const FullMenu = () => {
     return menuOptions.map((op, i) => {
       return (
-        <MenuOption heading={op.heading} icon={op.icon} action={op.action} key={i}/>
+        <MenuOption
+          heading={op.heading}
+          icon={op.icon}
+          action={op.action}
+          key={i}
+        />
       );
     });
   };
@@ -92,7 +98,6 @@ const SidebarMenu = () => {
       </div>
     </aside>
   );
-
 };
 
 export const Navbar = () => {
