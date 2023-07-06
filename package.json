@@ -20,7 +20,6 @@
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.14",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-jwt": "^8.4.1",
     "fakebase": "^0.3.0",
@@ -31,9 +30,8 @@
     "graphql-ws": "^5.13.1",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
-    "mongoose": "^7.2.2",
+    "mongoose": "^7.3.1",
     "nodemon": "^2.0.22",
-    "path": "^0.12.7",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "react": "^18.2.0",
@@ -50,8 +48,7 @@
     "yup": "^1.1.1"
   },
   "scripts": {
-    "start:client": "npm run tailwind:build && react-scripts start",
-    "start:server": "cd src/config && nodemon --ext js,graphql --ignore data/ server.js",
+    "start": "npm run tailwind:build && react-scripts start",
     "build": "npm run tailwind:build && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -75,9 +72,17 @@
       "last 1 safari version"
     ]
   },
+  "overrides": {
+    "react-error-overlay": "^6.0.9"
+  },
   "devDependencies": {
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
     "nodemon": "^2.0.22",
-    "sass": "^1.62.1",
+    "react-error-overlay": "^6.0.9",
+    "sass": "^1.63.6",
     "tailwindcss": "^3.3.1"
   }
 }
