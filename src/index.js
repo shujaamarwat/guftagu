@@ -5,7 +5,8 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './redux/rootReducer';
-import reportWebVitals from './reportWebVitals';
+import { ApolloProvider } from '@apollo/client';
+import client from './client/graphql/client';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,10 +16,10 @@ const store = configureStore({
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ApolloProvider>
   </React.StrictMode>
 );
-
-reportWebVitals();

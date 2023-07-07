@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FormInput, GoogleButton, TopTitle, compClasses } from "../../Shared";
-import { auth, registerWithEmailAndPassword } from "../../../config/firebase";
+import { auth, registerWithEmailAndPassword } from "../../../client/firebase";
 
 const LoginButton = () =>{
   return(

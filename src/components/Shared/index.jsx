@@ -1,4 +1,5 @@
-import { signInWithGoogle } from "../../config/firebase";
+import { faComment, faGear, faSignOut, faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { signInWithGoogle } from "../../client/firebase";
 
 export const TopTitle = ({ title }) => {
   return <h1 className="text-lg font-medium mb-3">{title}</h1>;
@@ -11,10 +12,32 @@ export const buttonHover = (color, type) => {
   );
 }
 
+export const menuOptions = [
+  {
+    heading: "Chats",
+    icon: faComment,
+    action: "/chats"
+  },
+  {
+    heading: "Profile",
+    icon: faUserAlt ,
+    action: "/profile"
+  },
+  {
+    heading: "Settings",
+    icon: faGear,
+    action: "/settings" },
+  {
+    heading: "Logout",
+    icon: faSignOut,
+    action: "/login"
+  },
+];
+
 export const compClasses = {
   loginCard: "max-w-md mx-auto rounded-lg shadow-md p-8 mb-4 w-[25vw]",
   loginButton: `w-full py-2 mt-4 ${buttonHover('blue', 'bg')} text-white rounded-md v-center`,
-  googleButton:`w-full py-2 mt-4 ${buttonHover('red', 'bg') } text-white rounded-md v-center`,
+  gButton:`w-full py-2 mt-4 ${buttonHover('red', 'bg') } text-white rounded-md v-center`,
   inputBox: `appearance-none border rounded w-full p-2 ${buttonHover('gray', 'text')} leading-tight focus:outline-none focus:shadow-outline`,
 };
 
@@ -22,7 +45,7 @@ export const GoogleButton = ({type}) => {
   return (
     <button
       type="button"
-      className={compClasses.googleButton}
+      className={compClasses.gButton}
       onClick={signInWithGoogle}
     >
       <i className="fab fa-google text-white mr-2"></i>
@@ -81,9 +104,9 @@ export const Alert = ({message}) => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          fill-rule="evenodd"
+          fillRule="evenodd"
           d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         ></path>
       </svg>
       <span className="sr-only">Info</span>

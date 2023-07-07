@@ -1,0 +1,28 @@
+@use '../../styles/styles.scss' as *;
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  .chat-badge{
+    justify-content: center;
+    font-size: 10px;
+    margin: -4px 0 0 -15px;
+    height: 10%;
+    background-color: $tertiary;
+  }
+
+  .icon{
+    font-size: 24px;
+  }
+
+  &:hover {
+    color: #f7fafc;
+    background-color: #4a5568;
+  }
+}
