@@ -633,8 +633,16 @@ video {
   inset: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .left-0 {
   left: 0px;
+}
+
+.left-\[6\.8rem\] {
+  left: 6.8rem;
 }
 
 .right-0 {
@@ -908,9 +916,9 @@ video {
   padding-right: 0.25rem;
 }
 
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .py-2 {
@@ -918,16 +926,28 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.pl-4 {
-  padding-left: 1rem;
+.pb-\[4rem\] {
+  padding-bottom: 4rem;
+}
+
+.pl-\[6rem\] {
+  padding-left: 6rem;
 }
 
 .pt-\[4vh\] {
   padding-top: 4vh;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
+}
+
+.text-end {
+  text-align: end;
 }
 
 .text-4xl {

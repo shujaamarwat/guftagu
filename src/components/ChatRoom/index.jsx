@@ -3,18 +3,16 @@ import { useEffect, useRef } from 'react';
 import { useAddMessage, useMessages } from "../../client/graphql/hooks";
 
 function MessageRow({ message }) {
-  console.log(message)
+  console.log(auth.currentUser)
   return (
-    <tr>
-      <td className="py-1">
-        <span className={(message.from === auth.currentUser.displayName) ? 'tag is-primary' : 'tag'}>
-          {message.from}
-        </span>
-      </td>
-      <td className="pl-4 py-1">
-        {message.text}
-      </td>
-    </tr>
+    <div className={(message.from === auth.currentUser.email) ? 'text-end' : 'text-left'}>
+      <p className="messageFrom">{message.from}</p>
+      <div className={(message.from === auth.currentUser.email) ? 'message sent' : 'message received'}>
+        <div className='content'>
+          <p>{message.text}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -30,7 +28,7 @@ function MessageList({messages}) {
   }, [messages]);
 
   return (
-    <div ref={containerRef} className="box" style={{ height: '50vh', overflowY: 'scroll', padding: '0em 0em 0em 8em' }}>
+    <div ref={containerRef} className="box px-4 pb-[4rem]" style={{overflowY: 'scroll' }}>
       <table>
         <tbody>
           {messages.map((message) => (
@@ -51,10 +49,9 @@ function MessageInput({ onSend }) {
   };
 
   return (
-    <div className="box">
-      <div className="control">
-        <input className="input" type="text" placeholder="Say something..." onKeyPress={handleKeyPress}/>
-      </div>
+    <div class="input-box fixed bottom-0 left-[6.8rem] right-0">
+      <input className="input" type="text" placeholder="Say something..." onKeyPress={handleKeyPress}/>
+      <button>Send</button>
     </div>
   );
 }
@@ -63,7 +60,6 @@ export const ChatRoom = () => {
   const { messages } = useMessages();
   const { addMessage } = useAddMessage();
 
-  // console.log(messages)
   const handleSend = async (text) => {
     const message = await addMessage(text);
     console.log('Message added:', message);
@@ -71,10 +67,10 @@ export const ChatRoom = () => {
 
   return (
     <section className="section">
-      <div className="container">
-        <h1 className="title">
+      <div className="container mx-auto pl-[6rem]">
+        {/* <h1 className="title box bg- p-4 fixed top-0 left-[6.8rem] right-0">
           Chatting as {auth.currentUser.displayName}
-        </h1>
+        </h1> */}
         <MessageList messages={messages} />
         <MessageInput onSend={handleSend} />
       </div>

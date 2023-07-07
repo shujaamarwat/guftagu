@@ -21,7 +21,6 @@ app.use(
 // Defines a route for logging in users.
 app.post("/login", async (req, res) => {
   const { userId, password } = req.body;
-  console.log("edqwwqd", userId)
   const user = await User.findOne({ id: userId });
   if (user && user.password === password) {
     const token = jwt.sign({ sub: user.id }, JWT_SECRET);

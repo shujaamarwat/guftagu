@@ -8,3 +8,62 @@ $tertiary: #6B8AFD;
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
+
+table{
+  width: 100%;
+  .messageFrom{
+    color: #616366;
+  }
+  .message {
+    display: flex;
+    max-width: 40%;
+    margin-bottom: 10px;
+
+    .content {
+      flex: 1;
+      padding: 1em;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+
+  .sent {
+    background-color: #dcf8c6;
+    border-radius: 1em 1em 0px 1em;
+    margin-left: auto; /* Aligns sent messages to the right */
+  }
+
+  .received {
+    background-color: rgb(244, 244, 244);
+    border-radius: 1em 1em 1em 0px;
+    margin-right: auto; /* Aligns received messages to the left */
+  }
+
+}
+
+
+.input-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background-color: white;
+  button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+}
