@@ -20,13 +20,15 @@ To use this app, follow these steps:
 
 Before running the app, make sure to add an `.env` file in the root directory of the project. This file should contain the necessary Firebase configuration values. Here's an example of how the `.env` file should be structured:
 
+```
 REACT_APP_GOOGLEAPIKEY=your-api-key
 REACT_APP_AUTHDOMAIN=your-auth-domain
 REACT_APP_PROJECTID=your-project-id
-REACT_APP_STORAGEBUCKET=your-storage-bucket REACT_APP_MESSAGESENDERID=your-sender-id
+REACT_APP_STORAGEBUCKET=your-storage-bucket
+REACT_APP_MESSAGESENDERID=your-sender-id
 REACT_APP_APPID=your-app-id
 REACT_APP_MEASUREMENTID=your-measurement-id
-
+```
 Replace `your-api-key`, `your-auth-domain`, `your-project-id`, `your-storage-bucket`, `your-sender-id`, `your-app-id` and `your-measurement-id` with the corresponding values from your Firebase project.
 
 ### Technologies Used
