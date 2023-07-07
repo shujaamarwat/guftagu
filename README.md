@@ -10,10 +10,24 @@ To use this app, follow these steps:
 2. Clone this repository to your local machine.
 3. Install dependencies by running `npm install` in the root directory.
 4. Start the server by running `npm run server` in the root directory.
-5. Start the client by running `npm start` in the root directory.
+5. Start the client by running `npm run start` in the root directory and a separate terminal.
 6. Open your browser and navigate to `http://localhost:3000`.
 7. Use the Firebase Auth service for login and account registration.
-8. Type a message in the input field and click the "Send" button to send a message.
+8. Navigate to chats page.
+9. Type a message in the input field and click the "Send" button to send a message.
+
+### Firebase Configuration
+
+Before running the app, make sure to add an `.env` file in the root directory of the project. This file should contain the necessary Firebase configuration values. Here's an example of how the `.env` file should be structured:
+
+REACT_APP_GOOGLEAPIKEY=your-api-key
+REACT_APP_AUTHDOMAIN=your-auth-domain
+REACT_APP_PROJECTID=your-project-id
+REACT_APP_STORAGEBUCKET=your-storage-bucket REACT_APP_MESSAGESENDERID=your-sender-id
+REACT_APP_APPID=your-app-id
+REACT_APP_MEASUREMENTID=your-measurement-id
+
+Replace `your-api-key`, `your-auth-domain`, `your-project-id`, `your-storage-bucket`, `your-sender-id`, `your-app-id` and `your-measurement-id` with the corresponding values from your Firebase project.
 
 ### Technologies Used
 
